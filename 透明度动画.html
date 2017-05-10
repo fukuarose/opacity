@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,div{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				display: block;
+				float: left;
+				margin-left:10px ;
+			}
+			#div1{
+				width: 200px;
+				height: 200px;
+				background: red;
+				filter: alpha(opacity:30);
+				opacity: 0.3;
+			}
+			#div2{
+				width: 200px;
+				height: 200px;
+				background: red;
+				filter: alpha(opacity:30);
+				opacity: 0.3;
+			}
+			#div3{
+				width: 200px;
+				height: 200px;
+				background: red;
+				filter: alpha(opacity:30);
+				opacity: 0.3;
+			}
+			#div4{
+				width: 200px;
+				height: 200px;
+				background: red;
+				filter: alpha(opacity:30);
+				opacity: 0.3;
+			}
+		</style>
+		<script>
+			window.onload=function(){
+				var oDiv=document.getElementsByTagName('div');
+				for(var i=0;i<oDiv.length;i++){
+					oDiv[i].timer=null;
+					oDiv[i].alpha=30;
+					oDiv[i].onmouseover=function(){
+					startMove(this,100);
+				}
+				    oDiv[i].onmouseout=function(){
+					startMove(this,30);
+				}
+				}
+				
+			}
+//			var alpha=30;
+			function startMove(obj,iTarget){
+				var oDiv=document.getElementsByTagName('div');
+				clearInterval(obj.timer);
+				obj.timer=setInterval(function(){
+					var speed=0;
+					if(obj.alpha>iTarget){
+						speed=-10;
+					}else{
+						speed=10;
+					}
+					if(obj.alpha==iTarget){
+						clearInterval(obj.timer);
+					}else{
+						obj.alpha=obj.alpha+speed;
+						obj.style.filter='alpha(opacity:'+obj.alpha+')';//基于IE浏览器
+						obj.style.opacity=obj.alpha/100; 
+					}
+				},30)
+					
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<div id="div3"></div>
+		<div id="div4"></div>
+	</body>
+</html>
